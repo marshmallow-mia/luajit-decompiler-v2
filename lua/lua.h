@@ -11,7 +11,7 @@ public:
 private:
 
 	static constexpr char UTF8_BOM[] = "\xEF\xBB\xBF";
-	static constexpr char NEW_LINE[] = "\r\n";
+	static constexpr char NEW_LINE[] = "\n";
 
 	void write_header();
 	void write_block(const Ast::Function& function, const std::vector<Ast::Statement*>& block);
@@ -38,7 +38,7 @@ private:
 	const bool forceOverwrite;
 	const bool minimizeDiffs;
 	const bool unrestrictedAscii;
-	HANDLE file = INVALID_HANDLE_VALUE;
+	FILE* file = nullptr;
 	std::string writeBuffer;
 	uint32_t indentLevel = 0;
 	uint64_t prototypeDataLeft = 0;
